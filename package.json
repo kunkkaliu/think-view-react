@@ -1,10 +1,15 @@
 {
   "name": "think-view-react",
-  "version": "0.0.1",
-  "description": "think view react",
+  "version": "0.0.2",
+  "description": "compile view templates with React for ThinkJS 3.x",
+  "author": {
+    "name": "kunkkaliu",
+    "email": "zudapang@qq.com"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -15,10 +20,13 @@
     "view",
     "react"
   ],
-  "author": "kunkkaliu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kunkkaliu/think-view-react/issues"
   },
-  "homepage": "https://github.com/kunkkaliu/think-view-react#readme"
+  "homepage": "https://github.com/kunkkaliu/think-view-react#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-think": "^1.0.3"
+  }
 }
