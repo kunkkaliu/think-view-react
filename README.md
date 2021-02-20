@@ -15,20 +15,19 @@ npm install think-view-react
 edit config file `src/config/adapter.js`, add options for react adapter:
 
 ```javascript
-const react = require('think-view-react')
+const react = require('think-view-react');
+
 exports.view = {
   type: 'react',
   common: {
     viewPath: path.join(think.ROOT_PATH, 'view'),
     sep: '_',
-    extname: '.html'
+    globalVarName: 'G',
+    extname: '.html',
   },
   react: {
     handle: react,
     options: {},
-    beforeRender: (react, handleOptions) => {
-      //do something before render the template.
-    }
-  }
+  },
 }
 ```

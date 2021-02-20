@@ -19,6 +19,12 @@ class TVReact {
    * @return {Promise}
    */
   render() {
+    const { globalVarName = 'G' } = this.config;
+		const { context = {} } = this.viewData;
+		const G = {
+			...global[globalVarName],
+			context,
+		};
     if (isDev) {
       return new Promise((resolve) => {
 				process.send({
@@ -27,7 +33,7 @@ class TVReact {
 				});
 				process.on('message', (data) => {
 					if (data.action === 'event_file_read_done') {
-						const html = data.content;
+						const html = data.content.replace('<div id="root"></div>', `<div id="root"></div><script>window.G = ${JSON.stringify(G)}</script>`);
 						resolve(html);
 					}
 				});
@@ -38,7 +44,8 @@ class TVReact {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(htmlData);
+          const html = htmlData.replace('<div id="root"></div>', `<div id="root"></div><script>window.G = ${JSON.stringify(G)}</script>`);
+					resolve(html);
 				}
 			});
 		});
