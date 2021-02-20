@@ -19,27 +19,29 @@ class TVReact {
    * @return {Promise}
    */
   render() {
-    const { options = {}, viewPath } = this.config;
-    const { devMiddleWare } = options;
     if (isDev) {
-      const mfs = devMiddleWare.fileSystem;
       return new Promise((resolve) => {
-        devMiddleWare.waitUntilValid(function() {
-          const htmlStream = mfs.readFileSync(`${viewPath}/index.html`);
-          const html = htmlStream.toString();
-          resolve(html);
-        });
-      });
+				process.send({
+					action: 'event_file_read',
+					filename: this.viewFile,
+				});
+				process.on('message', (data) => {
+					if (data.action === 'event_file_read_done') {
+						const html = data.content;
+						resolve(html);
+					}
+				});
+			});
     }
     return new Promise((resolve, reject) => {
-      fs.readFile(`${viewPath}/index.html`, 'utf8', (err, htmlData) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(htmlData);
-        }
-      });
-    });
+			fs.readFile(this.viewFile, 'utf8', (err, htmlData) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(htmlData);
+				}
+			});
+		});
   }
 }
 

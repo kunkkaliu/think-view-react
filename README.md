@@ -20,6 +20,7 @@ exports.view = {
   type: 'react',
   common: {
     viewPath: path.join(think.ROOT_PATH, 'view'),
+    sep: '_',
     extname: '.html'
   },
   react: {
