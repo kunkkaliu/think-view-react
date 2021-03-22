@@ -1,6 +1,6 @@
 # think-view-react
 
-[![npm](https://img.shields.io/npm/v/think-view-react.svg)](https://github.com/leo-enigma/think-view-art)
+[![npm](https://img.shields.io/npm/v/think-view-react.svg)](https://github.com/kunkkaliu/think-view-react)
 
 Compile view templates with React for ThinkJS 3.x
 
